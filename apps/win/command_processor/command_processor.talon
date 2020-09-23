@@ -8,7 +8,9 @@ tag(): user.generic_terminal
 tag(): user.git
 tag(): user.kubectl
 tag(): terminal
-  
+tag(): user.tabs
+
+
 action(user.file_manager_refresh_title):
 	insert("title Command Prompt: %CD%")
 	key(enter)
@@ -23,5 +25,3 @@ action(user.file_manager_open_parent):
     insert("cd ..")
     key(enter)
     user.file_manager_refresh_title()
-
-action(edit.delete_line): key(esc)

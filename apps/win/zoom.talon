@@ -1,0 +1,1 @@
+mute zoom: key(alt-a)

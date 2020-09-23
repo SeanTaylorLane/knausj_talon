@@ -1,7 +1,7 @@
 app: windows_terminal
 -
 tag(): user.tabs
-tag(): terminal
+tag(): user.generic_terminal
 
 # commands that work regardless of active terminal should go here.
 
@@ -21,10 +21,3 @@ focus down: key(ctrl-alt-shift-down)
 split right: key(ctrl-shift-h)
 split down: key(ctrl-h)
 term menu: key(ctrl-shift-f1)
-
-run last: key(up enter)
-kill all:
-  key(ctrl-c)
-  insert("y")
-  key(enter)
-  

@@ -1,7 +1,7 @@
 -
 settings():
     #adjust the scale of the imgui to my liking
-    imgui.scale = 1.3
+    imgui.scale = 2
     # enable if you'd like the picker gui to automatically appear when explorer has focus
     user.file_manager_auto_show_pickers = 0
     #set the max number of command lines per page in help
@@ -19,7 +19,7 @@ settings():
     #hide cursor when mouse_wake is called to enable zoom mouse
     user.mouse_wake_hides_cursor = 0
     #the amount to scroll up/down (equivalent to mouse wheel on Windows by default)
-    user.mouse_wheel_down_amount = 120
+    user.mouse_wheel_down_amount = 160
     #mouse grid and friends put the number one on the bottom left (vs on the top left)
     user.grids_put_one_bottom_left = 1
     # the number of lines of command history to display by default
@@ -28,12 +28,5 @@ settings():
     # "command history more" to display all of them, "command history less" to restore
     user.command_history_size = 50
 
-    # Uncomment the below to enable context-sensitive dictation. This determines
-    # how to format (capitalize, space) dictation-mode speech by selecting &
-    # copying surrounding text before inserting. This can be slow and may not
-    # work in some applications. You may wish to enable this on a
-    # per-application basis.
-    #user.context_sensitive_dictation = 1
-	
 # uncomment tag to enable mouse grid
 # tag(): user.mouse_grid_enabled

@@ -1,4 +1,6 @@
 from talon import imgui, Module, speech_system, actions, app
+from talon.ui import _SEAN_sorted_screens as sorted_screens
+
 
 # We keep command_history_size lines of history, but by default display only
 # command_history_display of them.
@@ -11,6 +13,7 @@ setting_command_history_display = mod.setting(
 hist_more = False
 history = []
 
+screen = sorted_screens()[0]
 
 def parse_phrase(word_list):
     return " ".join(word.split("\\")[0] for word in word_list)
@@ -30,7 +33,9 @@ def on_phrase(j):
 
 
 # todo: dynamic rect?
-@imgui.open(y=0)
+@imgui.open(x=screen.visible_rect.x, y=screen.visible_rect.y)
+# @imgui.open(x=-700, y=0)
+# @imgui.open(screen=monitor)
 def gui(gui: imgui.GUI):
     global history
     gui.text("Command History")
@@ -76,3 +81,12 @@ class Actions:
         """Show less history"""
         global hist_more
         hist_more = False
+
+# Talon starts faster if you don't use the `talon.ui` module during launch
+def on_ready():
+    # TODO (Sean): Where is gui coming from? Why is it in scope?
+    gui.show()
+
+
+# NOTE: please update this from "launch" to "ready" in Talon v0.1.5
+app.register("launch", on_ready)

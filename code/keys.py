@@ -148,6 +148,7 @@ punctuation_words = {
     "number sign": "#",
     "percent sign": "%",
     "at sign": "@",
+    "address sign": "@",
     "and sign": "&",
     "ampersand": "&",
 }
@@ -172,9 +173,9 @@ symbol_key_words = {
     "under score": "_",
     "paren": "(",
     "L paren": "(",
-    "left paren": "(",
+    "lookee": "(",
     "R paren": ")",
-    "right paren": ")",
+    "rookie": ")",
     "brace": "{",
     "left brace": "{",
     "R brace": "}",
@@ -246,4 +247,3 @@ class Actions:
     def get_alphabet() -> dict:
         """Provides the alphabet dictionary"""
         return alphabet
-

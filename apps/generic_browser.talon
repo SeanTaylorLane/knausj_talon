@@ -22,6 +22,20 @@ show cache: browser.show_clear_cache()
 
 dev tools: browser.toggle_dev_tools()
 
+# Website Shortcuts
+go to {user.browser_shortcut}:
+    # browser.go(user.browser_shortcut)
+    browser.focus_address()
+    insert(user.browser_shortcut)
+    key(enter)
+
+tab new {user.browser_shortcut}:
+    app.tab_open()
+    # browser.go(user.browser_shortcut)
+    browser.focus_address()
+    insert(user.browser_shortcut)
+    key(enter)
+
 #todo - port to apps
 # navigating current page
 # help: key(?)

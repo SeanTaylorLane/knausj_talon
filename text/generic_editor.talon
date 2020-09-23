@@ -22,6 +22,9 @@ go up:
 go down:
     edit.down()
 
+lend: edit.line_end()
+bend: edit.line_start()
+
 go line start:
     edit.line_start()
 
