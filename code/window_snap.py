@@ -10,9 +10,13 @@ Originally from dweil/talon_community - modified for newapi by jcaw.
 import time
 from operator import xor
 from typing import Optional
+from threading import Timer
+import subprocess
+import atexit
+import itertools
 
-from talon import ui, Module, Context, actions
-
+from talon import ui, Module, Context, actions, app
+from talon.ui import _SEAN_sorted_screens as sorted_screens
 
 def _set_window_pos(window, x, y, width, height):
     """Helper to set the window position."""
@@ -207,3 +211,47 @@ class Actions:
         _move_to_screen(
             window, screen_number=screen_number,
         )
+
+def on_ready():
+    subprocess.call(['C:\\Users\\Sean\\AppData\\Roaming\\talon\\.venv\\Scripts\\tail_log.bat'])
+    # subprocess.call(['C:\\Users\\Sean\\AppData\\Roaming\\talon\\.venv\\Scripts\\repl.bat'])
+    # time.sleep(2)
+    Timer(3.0, _move_my_windows, ()).start()
+    atexit.register(_on_exit)
+
+def _move_my_windows():
+    screen = sorted_screens()[0].visible_rect
+    log = list(filter(lambda w: w.title == 'Talon - Log Viewer', ui.windows()))[0]
+    # repl = list(filter(lambda w: w.title == 'Talon - REPL', ui.windows()))[0]
+    # _set_window_pos(
+    #     log,
+    #     x=screen.x,
+    #     y=screen.y,
+    #     width=screen.width * 0.5,
+    #     height=screen.height,
+    # )
+    _set_window_pos(
+        log,
+        x=screen.x + (screen.width * 0.5),
+        y=screen.y,
+        width=screen.width * 0.5,
+        height=screen.height,
+    )
+    # _snap_window_helper(log, _snap_positions['left'])
+    # _move_to_screen(log, screen_number=1)
+    # time.sleep(1)
+    # log = list(filter(lambda w: w.title == 'Talon - Log Viewer', ui.windows()))[0]
+    # repl = list(filter(lambda w: w.title == 'Talon - REPL', ui.windows()))[0]
+    # _snap_window_helper(repl, _snap_positions['right'])
+    # _move_to_screen(repl, screen_number=1)
+
+def _on_exit():
+    logs = filter(lambda w: w.title == 'Talon - Log Viewer', ui.windows())
+    repls = filter(lambda w: w.title == 'Talon - REPL', ui.windows())
+    for window in itertools.chain(logs, repls):
+        _bring_forward(window)
+        actions.app.window_close()
+
+
+# NOTE: please update this from "launch" to "ready" in Talon v0.1.5
+app.register("launch", on_ready)

@@ -275,7 +275,7 @@ def on_pop(active):
         stop_scroll()
     elif (
         not eye_zoom_mouse.zoom_mouse.enabled
-        and eye_mouse.mouse.attached_tracker is not None
+        # and eye_mouse.mouse.attached_tracker is not None
     ):
         if setting_mouse_enable_pop_click.get() >= 1:
             ctrl.mouse_click(button=0, hold=16000)
@@ -313,7 +313,7 @@ def start_scroll():
 
 
 def gaze_scroll():
-    # print("gaze_scroll")
+    print("gaze_scroll")
     if (
         eye_zoom_mouse.zoom_mouse.state == eye_zoom_mouse.STATE_IDLE
     ):  # or eye_zoom_mouse.zoom_mouse.state == eye_zoom_mouse.STATE_SLEEP:
@@ -340,7 +340,7 @@ def gaze_scroll():
         amount = int(((y - midpoint) / (rect.height / 10)) ** 3)
         actions.mouse_scroll(by_lines=False, y=amount)
 
-    # print(f"gaze_scroll: {midpoint} {rect.height} {amount}")
+        # print(f"gaze_scroll: {midpoint} {rect.height} {amount}")
 
 
 def stop_scroll():

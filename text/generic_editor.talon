@@ -22,6 +22,9 @@ go up:
 go down:
     edit.down()
 
+lend: edit.line_end()
+bend: edit.line_start()
+
 go line start:
     edit.line_start()
 
@@ -216,3 +219,7 @@ cut word right:
 cut line:
     edit.select_line()
     edit.cut()
+
+paste all:
+    edit.select_all()
+    edit.paste()
