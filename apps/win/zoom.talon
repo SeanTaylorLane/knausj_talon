@@ -1,0 +1,1 @@
+toggle zoom: key(alt-a)

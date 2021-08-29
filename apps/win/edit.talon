@@ -1,6 +1,11 @@
 os: windows
 os: linux
 -
+
+vi|v|the up: key(ctrl-u)
+
+vi|v|the down: key(ctrl-d)
+
 action(edit.copy):
 	key(ctrl-c)
 

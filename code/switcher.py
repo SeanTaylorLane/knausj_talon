@@ -319,7 +319,7 @@ class Actions:
 def gui(gui: imgui.GUI):
     gui.text("Names of running applications")
     gui.line()
-    for line in ctx.lists["self.running"]:
+    for line in sorted(ctx.lists["self.running"]):
         gui.text(line)
 
 

@@ -7,6 +7,15 @@ tag(): user.multiple_cursors
 tag(): user.snippets
 tag(): user.splits
 tag(): user.tabs
+
+### Sean's customizations ###
+action(edit.find): key(ctrl-shift-f)
+# This overrides "copy all" in generic_editor.talon
+copy all:
+  key(escape)
+  insert("ggVG")
+  edit.copy()
+
 #talon app actions
 action(app.tab_close): user.vscode("workbench.action.closeActiveEditor")
 action(app.tab_next): user.vscode("workbench.action.nextEditorInGroup")
@@ -56,11 +65,12 @@ please [<user.text>]:
 
 # Sidebar
 bar explore: user.vscode("workbench.view.explorer")
+bar files: user.vscode("workbench.view.explorer")
 bar extensions: user.vscode("workbench.view.extensions")
 bar outline: user.vscode("outline.focus")
 bar run: user.vscode("workbench.view.debug")
 bar search: user.vscode("workbench.view.search")
-bar source: user.vscode("workbench.view.scm")
+bar source: user.vscode("workbench.scm.focus")
 bar switch: user.vscode("workbench.action.toggleSidebarVisibility")
 
 # Panels
@@ -68,7 +78,7 @@ panel control: user.vscode("workbench.panel.repl.view.focus")
 panel output: user.vscode("workbench.panel.output.focus")
 panel problems: user.vscode("workbench.panel.markers.view.focus")
 panel switch: user.vscode("workbench.action.togglePanel")
-panel terminal: user.vscode("workbench.panel.terminal.focus")
+panel terminal: user.vscode("workbench.action.terminal.toggleTerminal")
 
 # Settings
 show settings: user.vscode("workbench.action.openGlobalSettings")
@@ -120,7 +130,19 @@ refactor rename: user.vscode("editor.action.rename")
 refactor this: user.vscode("editor.action.refactor")
 
 #code navigation
-(go declaration | follow): user.vscode("Go to Declaration")
+follow: 
+	key("ctrl:down")
+	mouse_click(0)
+	key("ctrl:up")
+	# close the mouse grid
+	user.grid_close()
+(definition | definitions): 
+  mouse_click(0)
+  user.vscode("editor.action.revealDefinition")
+references: 
+  mouse_click(0)
+  user.vscode("editor.action.goToReferences")
+go declaration: user.vscode("Go to Declaration")
 go back: user.vscode("workbench.action.navigateBack") 
 go forward:  user.vscode("workbench.action.navigateForward")  
 go implementation: user.vscode("Go to Implementation")

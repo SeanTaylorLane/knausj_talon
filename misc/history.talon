@@ -1,3 +1,5 @@
+previous command: user.previous_command_toggle()
+
 command history: user.history_toggle()
 command history clear: user.history_clear()
 command history less: user.history_less()
